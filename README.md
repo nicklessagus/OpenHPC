@@ -9,4 +9,4 @@ Es un archivo .sh que se ejecuta (sigue masomenos el PDF, pero veo que tiene má
 
 Hay otro archivo "pruebas_mias" que fue eso, pruebas varias :P. Lo dejo porque tiene un par de cosas que pueden servir, pero con el oficial alcanza.
 
-Basicamente instalando un nodo con un centos 8.3, y configurando una placa de red interna ya se puede seguir la guia (o ejecutar la receta), único detalle que recuerdo es que a los nodos hay que ponerle más de un giga de ram, porque sinó no le da la memoria para traer la imagen para bootear.
+Basicamente instalando un nodo con un centos 8.3, y configurando una placa de red interna ya se puede seguir la guia (o ejecutar la receta). Unico detalle que recuerdo es que a los nodos hay que ponerle más de un giga de ram, porque sino no le da la memoria para traer la imagen al bootear.
