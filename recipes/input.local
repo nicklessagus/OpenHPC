@@ -92,9 +92,13 @@ slurm_node_config="${slurm_node_config:-compute-0-[0-1] Sockets=2 CoresPerSocket
 # total number of computes
 num_computes="${num_computes:-2}"
 
+#las defino yo para ver si las puedo usar
+num_computes="${num_rack:-1}"
+num_computes="${num_rank:-2}"
+
 # regex and starting prefix that matches defined compute hostnames
 #  estoy usando la misma configuración de nombres que los otros
-# compute-[0...n]-[0...m]
+# compute-[0...rack]-[0...rank]
 
 compute_regex="${compute_regex:-compute-*}"
 

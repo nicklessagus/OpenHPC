@@ -341,16 +341,28 @@ echo "drivers += updates/kernel/" >> $WW_CONF
 wwbootstrap `uname -r`
 # Assemble VNFS
 wwvnfs --chroot $CHROOT
+
+# agrega los nodos que ya se definieron
 # Add hosts to cluster
 echo "GATEWAYDEV=${eth_provision}" > /tmp/network.$$
 wwsh -y file import /tmp/network.$$ --name network
 wwsh -y file set network --path /etc/sysconfig/network --mode=0644 --uid=0
-for ((i=0; i<$num_computes; i++)) ; do
-   wwsh -y node new ${c_name[i]} --ipaddr=${c_ip[i]} --hwaddr=${c_mac[i]} -D ${eth_provision}
-done
+
+
+# Esto agrega los nodos ya predefinidos, por ahoro lo comento. Más adelante se puede poner un if
+#for ((i=0; i<$num_computes; i++)) ; do
+#   wwsh -y node new ${c_name[i]} --ipaddr=${c_ip[i]} --hwaddr=${c_mac[i]} -D ${eth_provision}
+#done
+
+# Esto es la versión que agrega mientras bootea
+# la pinta de los nodos es <basename>-<rack>-<rank>
+
+wwnodescan --netdev=eth0 --ipaddr=10.0.0.2 --netmask=255.255.255.0 --vnfs=centos8.3 --bootstrap=`uname -r` --listen=${SMS_ETH_INTERNAL} compute-[0-$((num_rack-1))]-[0-$((num_rank-1))]
+
 # Add hosts to cluster (Cont.)
 wwsh -y provision set "${compute_regex}" --vnfs=centos8.3 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,munge.key,network
 
+#esto hay que adaptarlo a la nomenclatura
 # Optionally, define IPoIB network settings (required if planning to mount Lustre over IB)
 if [[ ${enable_ipoib} -eq 1 ]];then
      for ((i=0; i<$num_computes; i++)) ; do
