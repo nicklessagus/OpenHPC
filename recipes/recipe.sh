@@ -357,7 +357,7 @@ wwsh -y file set network --path /etc/sysconfig/network --mode=0644 --uid=0
 # Esto es la versión que agrega mientras bootea
 # la pinta de los nodos es <basename>-<rack>-<rank>
 
-wwnodescan --netdev=eth0 --ipaddr=10.0.0.2 --netmask=255.255.255.0 --vnfs=centos8.3 --bootstrap=`uname -r` --listen=${SMS_ETH_INTERNAL} compute-[0-$((num_rack-1))]-[0-$((num_rank-1))]
+wwnodescan --netdev=${eth_provision} --ipaddr=10.0.0.2 --netmask=255.255.255.0 --vnfs=centos8.3 --bootstrap=`uname -r` --listen=${sms_eth_internal} compute-[0-$((num_rack-1))]-[0-$((num_rank-1))]
 
 # Add hosts to cluster (Cont.)
 wwsh -y provision set "${compute_regex}" --vnfs=centos8.3 --bootstrap=`uname -r` --files=dynamic_hosts,passwd,group,shadow,munge.key,network
