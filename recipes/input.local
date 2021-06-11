@@ -103,7 +103,7 @@ num_computes="${num_rank:-2}"
 compute_regex="${compute_regex:-compute-*}"
 
 # para probar, los dos nodos los puse en compute-0-0 y 0-1
-compute_prefix="${compute_prefix:-compute-0-}"
+compute_prefix="${compute_prefix:-compute-}"
 
 # compute hostnames
 c_name[0]=compute-0-0
